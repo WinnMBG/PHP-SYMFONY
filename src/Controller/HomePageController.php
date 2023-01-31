@@ -10,7 +10,6 @@ class HomePageController extends AbstractController
     #[Route('/', name: 'index')]
     public function index():Response
     {
-        $titre = 'Acceuil';
         return $this->render('homepage/index.html.twig');
     }
 }

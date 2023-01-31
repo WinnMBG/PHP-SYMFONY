@@ -4,36 +4,30 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use App\Repository\ProductRepository;
 
 class ProductController extends AbstractController
 {
 
     private ProductRepository $productRepo;
-    private array $productsA = [
-        "prod1" => [
-            "name" => "Ballon d'or",
-            "price" => "200000€",
-            "disponibility" => "2"
-        ],
-        "prod2" => [
-            "name" => "Ballon World Cup",
-            "price" => "20€",
-            "disponibility" => "200"
-        ]
-    ];
+
+    public function __construct(ProductRepository $productRepository)
+    {
+        $this->productRepo = $productRepository;
+    }
     
-    #[Route('/{product/slug}', name: 'indexA')]
+    #[Route('/product/{slug}', name: 'oneProduct')]
     public function index(string $slug):Response
     {
-        $titre = 'Acceuil';
-        return $this->render('product/detail.html.twig', ['blabla' => $this->productsA[$product]]);
+        $one = $this->productRepo->findOneBy(['slug' => $slug]);
+        return $this->render('product/detail.html.twig', ['blabla' => $one]);
     }
 
-    #[Route('/{products}', name: 'indexP')]
-    public function indexe(string $products):Response
+    #[Route('/products', name: 'productsAll')]
+    public function indexe():Response
     {
         $all = $this->productRepo->findAll();
-        return $this->render('product/detail.html.twig', ['products' => $all]);
+        return $this->render('product/index.html.twig', ['products' => $all]);
     }
 }
 

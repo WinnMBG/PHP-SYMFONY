@@ -1,11 +1,17 @@
-<!DOCTYPE html>
+{% extends 'base.html.twig' %}
+{% block body %}
 <html>
     {% for product in products%}
-        <h1> {{product.name}} </h1>
-        <p>
-            <img src={{product.image}} alt=""/>
-            <h3>{{product.price}}</h3>
-        </p>
-        <button onclick={{url('indexA', {slug: {{product.slug}}})}}>Consulter</button>
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 text-center p-4">
+                <div class="card-body">
+                    <img class="card-image-top img-fluid" src={{product.image}} alt=""/>
+                    <h1 class="card-title"> {{product.name}} </h1>
+                    <h3 class="card-text fs-2">{{product.price}} €</h3>
+                    <a class="btn btn-outline-dark" href={{url('oneProduct', {slug: product.slug})}}>Consulter</a>
+                </div>
+            </div>
+        </div>
     {% endfor %}
 </html>
+{% endblock %}

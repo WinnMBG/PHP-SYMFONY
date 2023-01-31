@@ -1,10 +1,13 @@
-<!DOCTYPE html>
+{% extends 'base.html.twig' %}
+{% block body %}
 <html>
     <h1> {{blabla.name}} </h1>
     <p>
         <ul>
-            <li> Price: {{blabla.price}}</li>
-            <li> Disponibility: {{blabla.disponibility}}</li>
+            <img src={{blabla.image}} alt=""/> 
+            <li> Description: {{blabla.description}}</li>
+            <li> Price: {{blabla.price}} </li>
         </ul>
     </p>
 </html>
+{% endblock %}
