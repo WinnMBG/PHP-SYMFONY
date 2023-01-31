@@ -1,18 +1,20 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <html>
-    <div class="d-flex">
-        <div class="col-md-3">
-            <img class="img-fluid" src={{blabla.image}} alt=""/> 
-        </div>
-        <div class="col-md-6">
-            <h1 class="fw-bold fs-2 text-center"> {{blabla.name}} </h1>
-            <p class="fs-4 text-center">
-                {{blabla.description}}
-            </p>
-            <h3 class="text-center display-6 fw-bold my-4"> 
-                {{blabla.price}} €
-            </h3>
+    <div class="container my-4">
+        <div class="d-flex">
+            <div class="col-md-3">
+                <img class="img-fluid" src={{blabla.image}} alt=""/> 
+            </div>
+            <div class="col-md-6">
+                <h1 class="fw-bold fs-2 text-center"> {{blabla.name}} </h1>
+                <p class="fs-4 text-center">
+                    {{blabla.description}}
+                </p>
+                <h3 class="text-center display-6 fw-bold my-4"> 
+                    {{blabla.price}} €
+                </h3>
+            </div>
         </div>
     </div>
 </html>

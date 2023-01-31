@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <html>
-    {% for product in products%}
-        <div class="col-md-3 mb-4">
-            <div class="card h-100 text-center p-4">
-                <div class="card-body">
-                    <img class="card-image-top img-fluid" src={{product.image}} alt=""/>
-                    <h1 class="card-title"> {{product.name}} </h1>
-                    <h3 class="card-text fs-2">{{product.price}} €</h3>
-                    <a class="btn btn-outline-dark" href={{url('oneProduct', {slug: product.slug})}}>Consulter</a>
+    <div class="container my-4">
+        {% for product in products%}
+                <div class="card h-100 text-center p-4 my-3">
+                    <div class="card-body">
+                        <img class="card-image-top img-fluid" src={{product.image}} alt=""/>
+                        <h1 class="card-title"> {{product.name}} </h1>
+                        <h3 class="card-text fs-2">{{product.price}} €</h3>
+                        <a class="btn btn-outline-dark" href={{url('oneProduct', {slug: product.slug})}}>Consulter</a>
+                    </div>
                 </div>
-            </div>
-        </div>
-    {% endfor %}
-    {% include '_inc/pagination_products.html.twig' %}
+        {% endfor %}
+        {% include '_inc/pagination_products.html.twig' %}
+    </div>
 </html>
 {% endblock %}

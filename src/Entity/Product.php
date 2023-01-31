@@ -29,6 +29,21 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(targetEntity: Categorie::class, inversedBy: 'products')]
+    private $category;
+
+    public function getCategory(): ?Categorie
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Categorie $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
