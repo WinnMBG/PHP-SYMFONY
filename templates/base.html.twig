@@ -27,7 +27,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href={{url('productsAll')}}>
+                <a class="nav-link" href={{url('productsAll', {page: 1})}}>
                   Produits
                 </a>
               </li>
@@ -37,17 +37,15 @@
     </div>
     <body>
         <div class="container my-4">
-            {% block body %}{% endblock %}
+          {% block body %}{% endblock %}
         </div>
     </body>
     <footer class="bg-light text-dark pt-5">
             <div>
-                <div class='row ms-4'>
-                    <div class="col-md-4">
-                        <h2>Nous contacter ?</h2>
-                        <h1>0800-243-253</h1>
-                        <h1>Mail: rwmark@outlook.fr</h1>
-                    </div>
+                <div class='row ms-4 text-center'>
+                    <h2>Nous contacter ?</h2>
+                    <h1>0800-243-253</h1>
+                    <h1>Mail: thenumberone@outlook.fr</h1>
                 </div>
                 <div class="py-3 bg-dark mt-4">
                     <div class="container">
@@ -62,5 +60,5 @@
                     </div>
                 </div>
             </div>    
-        </footer>
+    </footer>
 </html>

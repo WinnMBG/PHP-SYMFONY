@@ -3,6 +3,29 @@
 
 <html>
     <h1 class="fw-bold fs-2 text-center mx-auto"> Bienvenue sur mon site ! </h1>
+    <div class="card text-bg-dark border-0">
+        <img src="https://th.bing.com/th/id/R.24471bc12b1b21faedacc3e97a20cece?rik=3CKptyBRrH9wPw&pid=ImgRaw&r=0" class="card-img" alt="..." height="1200px"/>
+        <div class="card-img-overlay d-flex justify-content-center">
+            <div class="container">
+                <p class="card-text fs-2 text-center">VENEZ CHERCHER VOS VETEMENTS TENDANCES!</p>
+            </div>
+        </div>
+    </div>
+    <h1 class="fs-2 fw-bolder"> Random products finded</h1>
+    <div class="d-flex">
+        {% for item in finded %}
+            <div class="col-md-3 my-4 mx-3">
+                <div class="card h-100 text-center p-4">
+                    <div class="card-body">
+                        <img class="card-image-top img-fluid" src={{item.image}} alt=""/>
+                        <h1 class="card-title"> {{item.name}} </h1>
+                        <h3 class="card-text fs-2">{{item.price}} €</h3>
+                        <a class="btn btn-outline-dark" href={{url('oneProduct', {slug: item.slug})}}>Consulter</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </html>
 
 {% endblock %}

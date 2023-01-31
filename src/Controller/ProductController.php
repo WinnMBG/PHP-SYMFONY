@@ -23,11 +23,12 @@ class ProductController extends AbstractController
         return $this->render('product/detail.html.twig', ['blabla' => $one]);
     }
 
-    #[Route('/products', name: 'productsAll')]
-    public function indexe():Response
+    #[Route('/products/page/{page}', name: 'productsAll')]
+    public function indexe(int $page):Response
     {
-        $all = $this->productRepo->findAll();
-        return $this->render('product/index.html.twig', ['products' => $all]);
+        $nbproducts = ceil($this->productRepo->getTotalProducts() / 12);
+        $productsForPage = $this->productRepo->getProductsByPage($page);
+        return $this->render('product/index.html.twig', ['products' => $productsForPage, 'nb' => $nbproducts]);
     }
 }
 

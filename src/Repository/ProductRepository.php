@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 
 /**
  * @extends ServiceEntityRepository<Product>
@@ -39,28 +40,47 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Product[] Returns an array of Product objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Product[] Returns an array of Product objects
+    */
+   public function getRandomValues(): array
+   {
+       return $this->createQueryBuilder('pro')
+           ->orderBy('RAND()')
+           ->setMaxResults(3)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
-//    public function findOneBySomeField($value): ?Product
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+   public function getTotalProducts(): int
+   {
+        return $this->createQueryBuilder('pro')
+            ->select('count(pro.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+        ;
+   }
+
+   public function getProductsByPage(int $nb): array
+   {
+        if( $nb === 1) {
+            return $this->createQueryBuilder('pro')
+                ->orderBy('pro.id', 'asc')
+                ->setFirstResult(0)
+                ->setMaxResults(12)
+                ->getQuery()
+                ->getResult()
+            ;
+        } else {
+            return $this->createQueryBuilder('pro')
+                ->orderBy('pro.id', 'asc')
+                ->setFirstResult(($nb - 1) * 12)
+                ->setMaxResults(12)
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+   }
 }
+?>
