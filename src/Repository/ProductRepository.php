@@ -68,15 +68,15 @@ class ProductRepository extends ServiceEntityRepository
             return $this->createQueryBuilder('pro')
                 ->orderBy('pro.id', 'asc')
                 ->setFirstResult(0)
-                ->setMaxResults(12)
+                ->setMaxResults(4)
                 ->getQuery()
                 ->getResult()
             ;
         } else {
             return $this->createQueryBuilder('pro')
                 ->orderBy('pro.id', 'asc')
-                ->setFirstResult(($nb - 1) * 12)
-                ->setMaxResults(12)
+                ->setFirstResult(($nb - 1) * 4)
+                ->setMaxResults(4)
                 ->getQuery()
                 ->getResult()
             ;

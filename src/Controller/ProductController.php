@@ -26,7 +26,7 @@ class ProductController extends AbstractController
     #[Route('/products/page/{page}', name: 'productsAll')]
     public function indexe(int $page):Response
     {
-        $nbproducts = ceil($this->productRepo->getTotalProducts() / 12);
+        $nbproducts = ceil($this->productRepo->getTotalProducts() / 4);
         $productsForPage = $this->productRepo->getProductsByPage($page);
         return $this->render('product/index.html.twig', ['products' => $productsForPage, 'nb' => $nbproducts]);
     }
