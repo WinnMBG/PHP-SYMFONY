@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Product;
-use App\Entity\Categorie;
 
 class ProductFixtures extends Fixture
 {
@@ -13,10 +12,11 @@ class ProductFixtures extends Fixture
     {
         for($i=4; $i < 50; $i++){
             $entity = new Product();
-            $myParent = new Categorie();
-            $myParent->setName("Parent $i");
-            $this->addReference("myParent$i", $entity);
+            $randomParent = random_int(0, 10);
             $entity
+                ->setCategory(
+                    $this->getReference("Cat$randomParent")
+                )
                 ->setName("Product n°$i")
                 ->setSlug("product$i")
                 ->setPrice($i)

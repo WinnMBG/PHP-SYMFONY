@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Categorie;
+use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\ProductRepository;
 
 /**
  * @extends ServiceEntityRepository<Categorie>
@@ -39,20 +41,33 @@ class CategorieRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Categorie[] Returns an array of Categorie objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Categorie[] Returns an array of Categorie objects
+    */
+   public function getCate(): array
+   {
+        return $this->createQueryBuilder('c')
+        ->select('c.name, c.slug, COUNT(p.id) as nbProduct')
+        ->Join(Product::class, 'p')
+        ->where('c.id=p.category')
+        ->groupBy('c.id')
+        ->getQuery()
+        ->getResult()
+        ;
+   }
+
+   public function getProductByCate(string $str): array
+   {
+        return $this->createQueryBuilder('c')
+        ->select('p')
+        ->Join(Product::class, 'p')
+        ->where('c.id=p.category')
+        ->andWhere('c.slug = :slug')
+        ->setParameter('slug', $str)
+        ->getQuery()
+        ->getResult()
+        ;
+   }
 
 //    public function findOneBySomeField($value): ?Categorie
 //    {

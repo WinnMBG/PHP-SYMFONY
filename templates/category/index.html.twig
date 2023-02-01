@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container my-3">
+    <div class="d-flex align-items-center">
+        {%for cate in categories %}
+        <a class="btn btn-outline-dark" href={{url('indexCat2', {slug: cate.slug})}}>
+            {{cate.name}} <span class="badge bg-secondary">{{cate.nbProduct}}</span>
+        </a>
+        {% endfor %}
+    </div>
+</div>    
+{% endblock %}
