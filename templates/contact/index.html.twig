@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<html>
+    <div class="container text-center" style="margin-top: 8em;">
+        <div class="mx-auto">
+            {{ form_start(form, { attr: {novalidate: 'novalidate'}}) }}
+                <p>
+                    {{ form_label(form.email)}}
+                    {{ form_widget(form.email,  { attr: {placeholder: 'Saisir votre mail'}}) }}
+                    {{ form_errors(form.email) }}
+                </p>
+                <p>
+                    {{ form_label(form.subject)}}
+                    {{ form_widget(form.subject, { attr: {placeholder: 'Saisir votre sujet'}}) }}
+                    {{ form_errors(form.subject) }}
+                </p>
+                <p>
+                    {{ form_label(form.message)}}
+                    {{ form_widget(form.message, { attr: {placeholder: 'Saisir votre message'}}) }}
+                    {{ form_errors(form.message) }}
+                </p>
+                <p>
+                    <input type="submit">
+                </p>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</html>
+{% endblock %}

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}PHPWebsite{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         <link rel="stylesheet" href={{asset('css/bootstrap.min.css')}}/>
@@ -18,7 +18,7 @@
         {% endblock %}
     </head>
     <div>
-      <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 shadow-sm">
+      <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 shadow-sm fixed-top">
         <div class="container">
             <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item">
@@ -31,6 +31,11 @@
                   Produits
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href={{url('indexContact')}}>
+                  Contact
+                </a>
+              </li>
             </ul> 
         </div>
       </nav>
@@ -38,25 +43,18 @@
     <body>
           {% block body %}{% endblock %}
     </body>
-    <footer class="bg-light text-dark pt-5">
-            <div>
-                <div class='row ms-4 text-center'>
-                    <h2>Nous contacter ?</h2>
-                    <h1>0800-243-253</h1>
-                    <h1>Mail: thenumberone@outlook.fr</h1>
-                </div>
-                <div class="py-3 bg-dark mt-4">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6 text-light">
-                                <small>&copy; 2023 MyWebsite, Tous droits réservés</small>
-                            </div>
-                            <div class="col-md-6 text-light text-md-end">
-                                <span>MyWebsite, Marque ton flow !</span>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-            </div>    
+    <footer class="fixed-bottom">
+      <div class="py-3 bg-dark mt-4">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-6 text-light">
+                      <small>&copy; 2023 MyWebsite, Tous droits réservés</small>
+                  </div>
+                  <div class="col-md-6 text-light text-md-end">
+                      <span>MyWebsite, Marque ton flow !</span>
+                  </div>
+              </div> 
+          </div>
+      </div>  
     </footer>
 </html>
