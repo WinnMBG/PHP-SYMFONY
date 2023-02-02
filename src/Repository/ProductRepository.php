@@ -62,15 +62,15 @@ class ProductRepository extends ServiceEntityRepository
         ;
    }
 
-   public function search(string $search): Product
+   public function search(string $search): array
    {
         return $this->createQueryBuilder('pro')
-            ->where('pro.name = :s')
+            ->where('pro.name LIKE :s')
             ->setParameters([
-                's' => $search
+                's' => "%$search%"
             ])
             ->getQuery()
-            ->getSingleResult();
+            ->getResult();
         ;
    }
 
