@@ -62,6 +62,18 @@ class ProductRepository extends ServiceEntityRepository
         ;
    }
 
+   public function search(string $search): Product
+   {
+        return $this->createQueryBuilder('pro')
+            ->where('pro.name = :s')
+            ->setParameters([
+                's' => $search
+            ])
+            ->getQuery()
+            ->getSingleResult();
+        ;
+   }
+
    public function getProductsByPage(int $nb): array
    {
         if( $nb === 1) {
